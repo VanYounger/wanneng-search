@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>万能搜索 · 国内外资料一站查</title>
+<link rel="stylesheet" href="/static/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%231f6feb'/><text x='16' y='23' font-size='18' text-anchor='middle' fill='white'>搜</text></svg>">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">
+    <div class="logo">搜</div>
+    <div>万能搜索<small>国内 + 国外资料</small></div>
+  </div>
+  <div class="spacer"></div>
+  <button class="pill" id="healthBtn" title="检查模型连接是否正常">
+    <span class="dot" id="healthDot"></span><span id="healthTxt">自检</span>
+  </button>
+  <button class="pill" id="helpBtn" title="使用说明">? 说明</button>
+  <button class="pill" id="newBtn" title="开始新的提问">＋ 新对话</button>
+</div>
+
+<div class="layout">
+  <aside class="sidebar">
+    <h4>最近提问</h4>
+    <div id="history"></div>
+    <div class="side-note">
+      提示：英文网站会自动用中文给你讲清楚；读不了的页面会标注“仅摘要”。
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="scroll" id="scroll">
+      <div class="wrap" id="stream">
+        <section class="hero" id="hero">
+          <h1>你想查什么？</h1>
+          <p>国内外的网站、新闻、论文、教程、价格、政策……直接问，我用中文给你讲明白。</p>
+          <div class="chips" id="chips"></div>
+        </section>
+      </div>
+    </div>
+
+    <div class="composer-wrap">
+      <div class="tabs">
+        <div class="tab active" data-mode="ask">搜资料</div>
+        <div class="tab" data-mode="read">读链接</div>
+      </div>
+      <div class="composer">
+        <textarea id="input" rows="1" placeholder="例如：最近 OpenAI 发布了什么新模型？"></textarea>
+        <div class="row">
+          <label class="toggle" title="读更多网页，答案更全，但会慢一些">
+            <input type="checkbox" id="deep"> 深度模式
+          </label>
+          <span class="hint" id="hint">Enter 发送 · Shift+Enter 换行</span>
+          <button class="send" id="send">搜索</button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="modal-mask" id="modalMask">
+  <div class="modal">
+    <div class="modal-head">
+      <b>使用说明</b>
+      <button class="mini" id="modalClose">关闭</button>
+    </div>
+    <div class="modal-body">
+      <h4>它能做什么</h4>
+      <ul>
+        <li>同时查<b>国内</b>（必应中文、360、搜狗、中文维基、公众号文章）和<b>国外</b>（Hacker News、外媒 RSS、学术库）的资料。</li>
+        <li>自动打开排名靠前的网页读正文，再用 AI 汇总成中文答案，并标出每条信息来自哪个网页。</li>
+        <li>「读链接」模式：把任意网页地址贴进来，它能读完再总结／翻译。</li>
+        <li>「深度模式」：多读网页，答案更全，速度会慢一些。</li>
+      </ul>
+      <h4>它做不到什么（请别误会）</h4>
+      <ul>
+        <li>这台机器目前<b>直连不了被墙的网站</b>（Google、YouTube、X/Twitter、大多数外媒主页）。这类页面靠一个云端阅读服务抓取，<b>每天只有约 20 次额度</b>，用完就只显示摘要。</li>
+        <li>需要登录才能看的内容（知乎回答、微信公众号正文、付费墙文章）读不到全文。</li>
+        <li>它不会替你买票、下单、发消息，只负责“查资料 + 讲明白”。</li>
+      </ul>
+      <h4>遇到问题</h4>
+      <ul>
+        <li>右上角「自检」显示“模型已连接”就说明一切正常。</li>
+        <li>显示“服务未启动”：双击桌面上的「万能搜索」图标，或运行项目里的 <code>启动.sh</code>。</li>
+        <li>答案不对：打开「深度模式」再问一次，或把问题问得更具体（时间、地点、人名）。</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="/static/marked.min.js"></script>
+<script src="/static/app.js"></script>
+</body>
+</html>

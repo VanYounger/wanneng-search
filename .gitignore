@@ -1,0 +1,19 @@
+# ---- 运行环境（不要提交） ----
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# ---- 本地数据与密钥 ----
+data/
+.env
+*.log
+
+# ---- 编辑器/系统 ----
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# 机器相关的桌面图标（用 install-desktop.sh 生成）
+万能搜索.desktop
